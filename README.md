@@ -48,12 +48,12 @@ Finish time: _____
 Actual time needed to complete: _____
 
 
-Number and name of feature: feature #3: 
+Number and name of feature: feature #3: styling with flexbox
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 30 minutes
 
-Start time: _____
+Start time: 12:50
 
-Finish time: _____
+Finish time: 1:00
 
-Actual time needed to complete: _____
+Actual time needed to complete: 10 minutes
