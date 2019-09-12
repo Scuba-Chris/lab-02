@@ -16,6 +16,7 @@ $.get('/data/page-1.json', data => {
     var images = new Pictures(picture);
     images.render();
   })
+  buildFilter();
 })
 
 Pictures.prototype.render = function() {
@@ -32,15 +33,14 @@ Pictures.prototype.render = function() {
   $('main').append($newSection);
 }
 
+const filterKeywords = [];
+
 const buildFilter = () => {
-  const filterKeywords = [];
   pictures.forEach(picture => {
     if (!filterKeywords.includes(picture.keyword)) {
       filterKeywords.push(picture.keyword);
     }
   })
-
-  filterKeywords.sort();
 
   filterKeywords.forEach(keyword => {
     let optionTag = `<option value="${keyword}">${keyword}</option>`;
@@ -59,5 +59,4 @@ const handleFilter = () => {
   })
 }
 
-buildFilter();
 handleFilter();
