@@ -18,46 +18,46 @@ $.get('/data/page-1.json', data => {
   })
 })
 
-console.log(pictures);
-
 Pictures.prototype.render = function() {
-  const option = $('select').html();
-  const $newOption = $('<option></option>');
-  $newOption.html(option);
-  $newOption.text(this.keyword);
-  // $newOption.find('option').text(this.keyword);
-  $('select').append($newOption);
-
   const myTemplate = $('#photo-template').html();
   const $newSection = $('<section></section>');
   $newSection.html(myTemplate);
 
-  $newSection.attr('value', this.keyword);
+  // $newSection.attr('value', this.keyword);
   $newSection.find('h2').text(this.title);
   $newSection.find('img').attr('src', this.image_url);
   $newSection.find('img').attr('alt', this.description);
   $newSection.find('p').text(this.description);
+  $newSection.attr('class', this.keyword);
   $('main').append($newSection);
-
 }
 
-
-$('select').change(function(event) {
-  pictures.forEach(images => {
-    if (event.target.value !== images.keyword) {
-      $([`value="${images.keyword}"`]).hide(500);
-      console.log(images.keyword);
+const buildFilter = () => {
+  const filterKeywords = [];
+  pictures.forEach(picture => {
+    if (!filterKeywords.includes(picture.keyword)) {
+      filterKeywords.push(picture.keyword);
     }
   })
-  //   console.log(event.target.value);
-})
 
+  filterKeywords.sort();
 
+  filterKeywords.forEach(keyword => {
+    let optionTag = `<option value="${keyword}">${keyword}</option>`;
+    $('select').append(optionTag);
+  })
+  console.log(filterKeywords);
+}
 
+const handleFilter = () => {
+  $('select').on('change', function() {
+    let selected = $(this).val();
+    if (selected !== 'default') {
+      $('section').hide();
+      $(`section.${selected}`).fadeIn();
+    }
+  })
+}
 
-
-// $('select').change(function() {
-//   pictures.forEach(images => {
-
-//   })
-// })
+buildFilter();
+handleFilter();
