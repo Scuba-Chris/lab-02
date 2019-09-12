@@ -1,39 +1,58 @@
 h1 {
-  margin: auto;
-  padding: 20px;
-  font-size: 2em;
-  text-align: center;
-  font-weight: bold;
   background-color: rgb(0, 83, 11);
   color: white;
+  font-size: 2em;
+  font-weight: bold;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
 }
 
 h2 {
-  margin: 5px;
-  font-weight: bold;
-  padding-bottom: 10px;
   font-size: 1.2em;
+  font-weight: bold;
+  margin: 5px;
+  padding-bottom: 10px;
   width: 240px;
 }
 
 p {
-  padding-top: 5px;
   margin: auto;
-  width: 235px;
+  padding-top: 5px;
   text-align: center;
+  width: 235px;
 }
 
 select {
-  margin: 30px 0px;
+  margin: 30px 10px;
   width: 200px;
 }
 
 img {
-  width: 240px;
-  box-sizing: border-box;
-  border: 1px solid #dedede;
-  padding: 10px;
   align-items: baseline;
+  border: 1px solid #dedede;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 240px;
+}
+
+button {
+  background-color: rgb(70, 207, 88);
+  border-radius: 5px;
+  border-style: outset;
+  border-width: 1.5px;
+  color: black;
+  font-family: 'Livvic', sans-serif;
+  height: 30px;
+  line-height: 10px;
+  margin: 15px 5px;
+  padding: 10px;
+  text-align: center;
+}
+
+button:hover {
+  background-color: rgb(0, 83, 11);
+  color: white;
 }
 
 #photo-template {

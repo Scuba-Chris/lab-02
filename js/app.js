@@ -1,6 +1,6 @@
 'use strict';
 
-const pictures = [];
+let pictures = [];
 
 function Pictures(picture) {
   this.image_url = picture.image_url;
@@ -11,7 +11,10 @@ function Pictures(picture) {
   pictures.push(this);
 }
 
-$.get('/data/page-1.json', data => {
+let data1 = '/data/page-1.json';
+let data2 = '/data/page-2.json';
+
+$.get(data1, data => {
   data.forEach(picture => {
     var images = new Pictures(picture);
     images.render();
@@ -19,21 +22,55 @@ $.get('/data/page-1.json', data => {
   buildFilter();
 })
 
+$('#page1').on('click', function() {
+  $('section').toggle();
+  $.get(data1, data => {
+    pictures = [];
+    filterKeywords = [];
+    $('section').remove();
+    $('#default').siblings().remove();
+    data.forEach(picture => {
+      var images = new Pictures(picture);
+      images.render();
+    })
+    console.log(pictures);
+    buildFilter();
+  })
+})
+
+$('#page2').on('click', function() {
+  $('section').toggle();
+  $.get(data2, data => {
+    pictures = [];
+    filterKeywords = [];
+    $('section').remove();
+    $('#default').siblings().remove();
+    data.forEach(picture => {
+      var images = new Pictures(picture);
+      images.render();
+    })
+    console.log(pictures);
+    buildFilter();
+  })
+})
+
 Pictures.prototype.render = function() {
   const myTemplate = $('#photo-template').html();
   const $newSection = $('<section></section>');
   $newSection.html(myTemplate);
 
-  // $newSection.attr('value', this.keyword);
+  // let templateRender = Handlebars.compile(myTemplate);
+  // return templateRender(this);
   $newSection.find('h2').text(this.title);
   $newSection.find('img').attr('src', this.image_url);
   $newSection.find('img').attr('alt', this.description);
   $newSection.find('p').text(this.description);
+
   $newSection.attr('class', this.keyword);
   $('main').append($newSection);
 }
 
-const filterKeywords = [];
+let filterKeywords = [];
 
 const buildFilter = () => {
   pictures.forEach(picture => {
@@ -46,7 +83,6 @@ const buildFilter = () => {
     let optionTag = `<option value="${keyword}">${keyword}</option>`;
     $('select').append(optionTag);
   })
-  console.log(filterKeywords);
 }
 
 const handleFilter = () => {
